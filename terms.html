@@ -1,80 +1,553 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Términos de Servicio — Family Guardian</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', sans-serif; background: #0F0F1A; color: white; }
-        header { background: #1A1A2E; padding: 20px; text-align: center; border-bottom: 2px solid #1565C0; }
-        header h1 { font-size: 24px; color: #4FC3F7; }
-        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
-        h2 { color: #4FC3F7; margin: 24px 0 12px; }
-        p, li { color: #8899AA; line-height: 1.8; margin-bottom: 12px; }
-        ul { padding-left: 20px; }
-        .back { display: inline-block; background: #1565C0; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; margin-bottom: 24px; }
-        footer { text-align: center; padding: 24px; color: #8899AA; border-top: 1px solid #1A1A2E; margin-top: 40px; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Términos de Servicio — Family Guardian</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --azul: #3B82F6;
+      --azul-dark: #1D4ED8;
+      --azul-light: #EFF6FF;
+      --morado: #8B5CF6;
+      --verde: #10B981;
+      --texto: #1E293B;
+      --texto-gris: #64748B;
+      --texto-claro: #94A3B8;
+      --fondo: #FFFFFF;
+      --fondo-gris: #F8FAFF;
+      --borde: #E2E8F0;
+      --radio: 16px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--fondo);
+      color: var(--texto);
+      line-height: 1.6;
+    }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--borde);
+      padding: 0 5%;
+      height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 800; font-size: 1.1rem; color: var(--texto);
+      text-decoration: none;
+    }
+
+    .nav-logo-icon {
+      width: 34px; height: 34px;
+      background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+
+    .nav-back {
+      display: flex; align-items: center; gap: 6px;
+      color: var(--texto-gris); text-decoration: none;
+      font-size: 0.875rem; font-weight: 500;
+      padding: 8px 16px; border-radius: 10px;
+      border: 1px solid var(--borde);
+      transition: all 0.2s;
+    }
+
+    .nav-back:hover { border-color: var(--azul); color: var(--azul); }
+
+    .page-hero {
+      background: linear-gradient(160deg, #FFFFFF 0%, #F5F3FF 100%);
+      padding: 80px 5% 60px;
+      text-align: center;
+    }
+
+    .page-hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #F5F3FF; color: var(--morado);
+      padding: 6px 14px; border-radius: 20px;
+      font-size: 0.8rem; font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .page-hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 900; color: var(--texto); margin-bottom: 16px;
+    }
+
+    .page-hero p {
+      color: var(--texto-gris); font-size: 1rem;
+      max-width: 560px; margin: 0 auto;
+    }
+
+    .page-hero-meta {
+      display: flex; align-items: center; justify-content: center;
+      gap: 24px; margin-top: 28px; flex-wrap: wrap;
+    }
+
+    .page-hero-meta-item {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 0.8rem; color: var(--texto-gris);
+    }
+
+    .page-layout {
+      max-width: 1100px; margin: 0 auto;
+      padding: 60px 5%;
+      display: grid; grid-template-columns: 260px 1fr;
+      gap: 60px; align-items: start;
+    }
+
+    .sidebar { position: sticky; top: 88px; }
+
+    .sidebar-title {
+      font-size: 0.75rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--texto-claro); margin-bottom: 12px;
+    }
+
+    .sidebar-nav { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+
+    .sidebar-nav a {
+      display: block; padding: 8px 12px;
+      border-radius: 8px; text-decoration: none;
+      color: var(--texto-gris); font-size: 0.875rem;
+      transition: all 0.2s;
+    }
+
+    .sidebar-nav a:hover { background: #F5F3FF; color: var(--morado); }
+
+    .sidebar-card {
+      margin-top: 28px; background: #F5F3FF;
+      border-radius: var(--radio); padding: 20px;
+    }
+
+    .sidebar-card-title {
+      font-size: 0.875rem; font-weight: 700;
+      color: var(--texto); margin-bottom: 8px;
+    }
+
+    .sidebar-card-text {
+      font-size: 0.8rem; color: var(--texto-gris);
+      line-height: 1.6; margin-bottom: 14px;
+    }
+
+    .sidebar-card-link {
+      display: inline-block;
+      background: var(--morado); color: white;
+      padding: 8px 16px; border-radius: 8px;
+      font-size: 0.8rem; font-weight: 600;
+      text-decoration: none; transition: background 0.2s;
+    }
+
+    .sidebar-card-link:hover { background: #7C3AED; }
+
+    .content { min-width: 0; }
+
+    .content-section {
+      margin-bottom: 56px;
+      scroll-margin-top: 88px;
+    }
+
+    .content-section-header {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 24px; padding-bottom: 16px;
+      border-bottom: 2px solid var(--borde);
+    }
+
+    .content-section-icon {
+      width: 48px; height: 48px; min-width: 48px;
+      background: #F5F3FF; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+    }
+
+    .content-section-num {
+      font-size: 0.7rem; font-weight: 700;
+      color: var(--morado); text-transform: uppercase;
+      letter-spacing: 0.08em; margin-bottom: 2px;
+    }
+
+    .content-section-title {
+      font-size: 1.2rem; font-weight: 800; color: var(--texto);
+    }
+
+    .content-text {
+      font-size: 0.95rem; color: var(--texto-gris);
+      line-height: 1.8; margin-bottom: 16px;
+    }
+
+    .content-text:last-child { margin-bottom: 0; }
+
+    .content-list {
+      list-style: none; display: flex; flex-direction: column;
+      gap: 10px; margin-bottom: 16px;
+    }
+
+    .content-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.95rem; color: var(--texto-gris); line-height: 1.6;
+    }
+
+    .content-list li::before {
+      content: '→';
+      color: var(--morado); font-weight: 700;
+      font-size: 0.85rem; margin-top: 2px; min-width: 16px;
+    }
+
+    .content-highlight {
+      border-left: 4px solid var(--morado);
+      background: #F5F3FF;
+      border-radius: 0 12px 12px 0;
+      padding: 16px 20px; margin: 20px 0;
+    }
+
+    .content-highlight p {
+      font-size: 0.9rem; color: var(--texto);
+      line-height: 1.7; font-weight: 500;
+    }
+
+    .content-highlight.warning {
+      border-left-color: #F59E0B;
+      background: #FFFBEB;
+    }
+
+    .content-highlight.danger {
+      border-left-color: #EF4444;
+      background: #FFF5F5;
+    }
+
+    footer {
+      background: var(--texto);
+      padding: 40px 5%;
+      text-align: center;
+    }
+
+    .footer-inner-small { max-width: 800px; margin: 0 auto; }
+
+    .footer-logo-small {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-weight: 800; font-size: 1rem; color: white;
+      text-decoration: none; margin-bottom: 16px;
+    }
+
+    .footer-logo-small-icon {
+      width: 28px; height: 28px;
+      background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+      border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem;
+    }
+
+    .footer-links-small {
+      display: flex; justify-content: center; gap: 24px;
+      list-style: none; margin-bottom: 20px; flex-wrap: wrap;
+    }
+
+    .footer-links-small a {
+      color: rgba(255,255,255,0.55); text-decoration: none;
+      font-size: 0.875rem; transition: color 0.2s;
+    }
+
+    .footer-links-small a:hover { color: white; }
+
+    .footer-copy-small {
+      font-size: 0.8rem; color: rgba(255,255,255,0.35);
+    }
+
+    @media (max-width: 768px) {
+      .page-layout { grid-template-columns: 1fr; gap: 40px; }
+      .sidebar { position: static; }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>📄 Términos de Servicio</h1>
-        <p>Family Guardian — Última actualización: Abril 2026</p>
-    </header>
-    <div class="container">
-        <a href="index.html" class="back">← Volver al inicio</a>
 
-        <h2>1. Aceptación de los términos</h2>
-        <p>Al descargar e instalar Family Guardian aceptas estos términos de servicio. Si no estás de acuerdo con estos términos no debes usar la aplicación.</p>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">🛡️</div>
+    Family Guardian
+  </a>
+  <a href="index.html" class="nav-back">← Volver al inicio</a>
+</nav>
 
-        <h2>2. Uso permitido</h2>
-        <p>Family Guardian está diseñada exclusivamente para:</p>
-        <ul>
-            <li>Control parental de menores de edad por sus padres o tutores legales</li>
-            <li>Monitoreo de dispositivos con consentimiento del menor o bajo tutela legal</li>
-            <li>Garantizar la seguridad digital de los hijos</li>
-        </ul>
+<div class="page-hero">
+  <div class="page-hero-badge">📋 Legal</div>
+  <h1>Términos de Servicio</h1>
+  <p>Al usar Family Guardian aceptas estos términos. Por favor léelos con atención antes de usar la aplicación.</p>
+  <div class="page-hero-meta">
+    <div class="page-hero-meta-item">📅 Última actualización: Mayo 2025</div>
+    <div class="page-hero-meta-item">📖 Lectura: ~6 min</div>
+    <div class="page-hero-meta-item">🌐 Versión: 1.0</div>
+  </div>
+</div>
 
-        <h2>3. Uso prohibido</h2>
-        <p>Está estrictamente prohibido usar Family Guardian para:</p>
-        <ul>
-            <li>Espiar a personas adultas sin su consentimiento</li>
-            <li>Monitorear dispositivos sin autorización legal</li>
-            <li>Cualquier actividad ilegal o que viole la privacidad de terceros</li>
-            <li>Acoso, intimidación o vigilancia no autorizada</li>
-        </ul>
+<div class="page-layout">
 
-        <h2>4. Responsabilidad del usuario</h2>
-        <p>El padre o tutor es completamente responsable del uso que haga de la aplicación y de garantizar que su uso cumple con las leyes locales de privacidad y protección de menores.</p>
-
-        <h2>5. Limitación de responsabilidad</h2>
-        <p>Family Guardian y Saul Bravo no se hacen responsables de:</p>
-        <ul>
-            <li>Pérdida de datos por fallos técnicos</li>
-            <li>Uso indebido de la aplicación por parte del usuario</li>
-            <li>Daños directos o indirectos derivados del uso de la app</li>
-        </ul>
-
-        <h2>6. Disponibilidad del servicio</h2>
-        <p>No garantizamos disponibilidad continua del servicio. Podemos interrumpir o modificar el servicio en cualquier momento sin previo aviso.</p>
-
-        <h2>7. Propiedad intelectual</h2>
-        <p>Todos los derechos de Family Guardian incluyendo código, diseño y marca pertenecen a Saul Bravo. Queda prohibida la reproducción o distribución sin autorización expresa.</p>
-
-        <h2>8. Cambios en los términos</h2>
-        <p>Nos reservamos el derecho de modificar estos términos en cualquier momento. El uso continuado de la aplicación implica la aceptación de los nuevos términos.</p>
-
-        <h2>9. Ley aplicable</h2>
-        <p>Estos términos se rigen por las leyes del país de residencia del usuario.</p>
-
-        <h2>10. Contacto</h2>
-        <p>Para cualquier consulta sobre estos términos contacta a:<br>
-        📧 jafetsaulchumbebravo90@gmail.com<br>
-        👤 Saul Bravo — Family Guardian</p>
+  <aside class="sidebar">
+    <div class="sidebar-title">Contenido</div>
+    <ul class="sidebar-nav">
+      <li><a href="#t1">1. Aceptación de términos</a></li>
+      <li><a href="#t2">2. Descripción del servicio</a></li>
+      <li><a href="#t3">3. Elegibilidad y cuentas</a></li>
+      <li><a href="#t4">4. Uso permitido</a></li>
+      <li><a href="#t5">5. Uso prohibido</a></li>
+      <li><a href="#t6">6. Privacidad</a></li>
+      <li><a href="#t7">7. Propiedad intelectual</a></li>
+      <li><a href="#t8">8. Limitación de responsabilidad</a></li>
+      <li><a href="#t9">9. Modificaciones</a></li>
+      <li><a href="#t10">10. Terminación</a></li>
+      <li><a href="#t11">11. Ley aplicable</a></li>
+      <li><a href="#t12">12. Contacto</a></li>
+    </ul>
+    <div class="sidebar-card">
+      <div class="sidebar-card-title">¿Dudas legales?</div>
+      <p class="sidebar-card-text">Contáctanos si tienes preguntas sobre estos términos antes de usar la app.</p>
+      <a href="mailto:jafetsaulchumbebravo90@gmail.com" class="sidebar-card-link">Escribirnos</a>
     </div>
-    <footer>
-        <p>© 2026 Family Guardian — Saul Bravo. Todos los derechos reservados.</p>
-    </footer>
+  </aside>
+
+  <main class="content">
+
+    <div class="content-highlight">
+      <p>📋 <strong>Resumen:</strong> Family Guardian es una app de control parental para uso exclusivo de padres/tutores con sus hijos menores. El uso responsable y ético es obligatorio. No nos hacemos responsables del mal uso de la aplicación.</p>
+    </div>
+
+    <div class="content-section" id="t1">
+      <div class="content-section-header">
+        <div class="content-section-icon">✅</div>
+        <div>
+          <div class="content-section-num">Artículo 01</div>
+          <div class="content-section-title">Aceptación de los términos</div>
+        </div>
+      </div>
+      <p class="content-text">Al descargar, instalar o usar Family Guardian ("la App"), usted acepta quedar vinculado por estos Términos de Servicio ("Términos"). Si no está de acuerdo con alguna parte de estos términos, no debe usar la aplicación.</p>
+      <p class="content-text">Estos Términos constituyen un acuerdo legal entre usted y Family Guardian. Al crear una cuenta, confirma que ha leído, comprendido y acepta estos Términos en su totalidad.</p>
+    </div>
+
+    <div class="content-section" id="t2">
+      <div class="content-section-header">
+        <div class="content-section-icon">📱</div>
+        <div>
+          <div class="content-section-num">Artículo 02</div>
+          <div class="content-section-title">Descripción del servicio</div>
+        </div>
+      </div>
+      <p class="content-text">Family Guardian es una aplicación de control parental para Android que permite a padres y tutores legales monitorear la actividad digital y física de sus hijos menores de edad. Los servicios incluyen:</p>
+      <ul class="content-list">
+        <li>Rastreo de ubicación GPS en tiempo real e historial de rutas</li>
+        <li>Monitoreo de uso de aplicaciones y tiempo de pantalla</li>
+        <li>Visualización remota de pantalla y cámara del dispositivo del hijo</li>
+        <li>Escucha de audio del entorno del dispositivo hijo</li>
+        <li>Gestión de aplicaciones permitidas y bloqueadas</li>
+        <li>Sistema de alertas de emergencia SOS con notificación por SMS</li>
+        <li>Detección de contenido inapropiado en imágenes</li>
+        <li>Asistente de inteligencia artificial para recomendaciones parentales</li>
+      </ul>
+    </div>
+
+    <div class="content-section" id="t3">
+      <div class="content-section-header">
+        <div class="content-section-icon">👤</div>
+        <div>
+          <div class="content-section-num">Artículo 03</div>
+          <div class="content-section-title">Elegibilidad y cuentas</div>
+        </div>
+      </div>
+      <p class="content-text">Para usar Family Guardian debes cumplir los siguientes requisitos:</p>
+      <ul class="content-list">
+        <li>Ser mayor de 18 años o la mayoría de edad en tu país</li>
+        <li>Ser padre, madre o tutor legal del menor cuyo dispositivo será monitoreado</li>
+        <li>Proporcionar información veraz y actualizada al crear tu cuenta</li>
+        <li>Mantener la seguridad de tu contraseña y no compartirla con terceros</li>
+        <li>Ser responsable de toda actividad realizada bajo tu cuenta</li>
+      </ul>
+      <div class="content-highlight warning">
+        <p>⚠️ <strong>Importante:</strong> Usar Family Guardian para monitorear a adultos sin su consentimiento o a menores que no estén bajo tu tutela legal puede ser ilegal en tu país. Eres el único responsable del cumplimiento de las leyes locales.</p>
+      </div>
+    </div>
+
+    <div class="content-section" id="t4">
+      <div class="content-section-header">
+        <div class="content-section-icon">✔️</div>
+        <div>
+          <div class="content-section-num">Artículo 04</div>
+          <div class="content-section-title">Uso permitido</div>
+        </div>
+      </div>
+      <p class="content-text">Family Guardian está diseñada exclusivamente para los siguientes usos legítimos:</p>
+      <ul class="content-list">
+        <li>Monitorear la seguridad y actividad digital de tus hijos menores de edad</li>
+        <li>Establecer límites saludables de uso de tecnología en el hogar</li>
+        <li>Proteger a tus hijos de contenido inapropiado en internet</li>
+        <li>Conocer la ubicación de tus hijos por razones de seguridad</li>
+        <li>Responder a situaciones de emergencia a través del botón SOS</li>
+        <li>Fomentar hábitos digitales saludables en la familia</li>
+      </ul>
+    </div>
+
+    <div class="content-section" id="t5">
+      <div class="content-section-header">
+        <div class="content-section-icon">🚫</div>
+        <div>
+          <div class="content-section-num">Artículo 05</div>
+          <div class="content-section-title">Uso prohibido</div>
+        </div>
+      </div>
+      <p class="content-text">Está estrictamente prohibido usar Family Guardian para:</p>
+      <ul class="content-list">
+        <li>Espiar a adultos sin su conocimiento o consentimiento expreso</li>
+        <li>Monitorear a personas que no estén bajo tu tutela legal</li>
+        <li>Acosar, intimidar o controlar a cualquier persona</li>
+        <li>Actividades ilegales o que violen la privacidad de terceros</li>
+        <li>Intentar hacer ingeniería inversa o modificar la aplicación</li>
+        <li>Revender, sublicenciar o distribuir la aplicación sin autorización</li>
+        <li>Sobrecargar o interferir con los servidores e infraestructura de la app</li>
+      </ul>
+      <div class="content-highlight danger">
+        <p>🚫 <strong>Consecuencias:</strong> El incumplimiento de estas prohibiciones puede resultar en la suspensión inmediata de la cuenta, reporte a autoridades competentes y acciones legales según corresponda.</p>
+      </div>
+    </div>
+
+    <div class="content-section" id="t6">
+      <div class="content-section-header">
+        <div class="content-section-icon">🔒</div>
+        <div>
+          <div class="content-section-num">Artículo 06</div>
+          <div class="content-section-title">Privacidad</div>
+        </div>
+      </div>
+      <p class="content-text">El uso de Family Guardian también está sujeto a nuestra <a href="privacy.html" style="color:var(--azul);">Política de Privacidad</a>, que se incorpora a estos Términos por referencia. Al aceptar estos Términos, también aceptas las prácticas descritas en la Política de Privacidad.</p>
+      <p class="content-text">Eres responsable de obtener los consentimientos necesarios bajo las leyes de privacidad aplicables antes de instalar la app en el dispositivo de tu hijo.</p>
+    </div>
+
+    <div class="content-section" id="t7">
+      <div class="content-section-header">
+        <div class="content-section-icon">©️</div>
+        <div>
+          <div class="content-section-num">Artículo 07</div>
+          <div class="content-section-title">Propiedad intelectual</div>
+        </div>
+      </div>
+      <p class="content-text">Family Guardian y todo su contenido, características y funcionalidades son propiedad exclusiva de sus desarrolladores y están protegidos por leyes de propiedad intelectual.</p>
+      <ul class="content-list">
+        <li>El nombre "Family Guardian", logotipo y materiales gráficos son marcas registradas</li>
+        <li>El código fuente de la aplicación está protegido por derechos de autor</li>
+        <li>No está permitido copiar, modificar, distribuir o crear trabajos derivados sin autorización escrita</li>
+        <li>Se te otorga una licencia limitada, no exclusiva y revocable para usar la app según estos Términos</li>
+      </ul>
+    </div>
+
+    <div class="content-section" id="t8">
+      <div class="content-section-header">
+        <div class="content-section-icon">⚖️</div>
+        <div>
+          <div class="content-section-num">Artículo 08</div>
+          <div class="content-section-title">Limitación de responsabilidad</div>
+        </div>
+      </div>
+      <p class="content-text">Family Guardian se proporciona "tal cual" y "según disponibilidad". En la medida permitida por la ley aplicable:</p>
+      <ul class="content-list">
+        <li>No garantizamos disponibilidad ininterrumpida o libre de errores del servicio</li>
+        <li>No somos responsables de daños indirectos, incidentales o consecuentes</li>
+        <li>No somos responsables del uso indebido de la aplicación por parte del usuario</li>
+        <li>No garantizamos que la app detecte el 100% del contenido inapropiado</li>
+        <li>La precisión del GPS puede variar según las condiciones del dispositivo y la red</li>
+      </ul>
+      <div class="content-highlight warning">
+        <p>⚠️ <strong>Nota importante:</strong> Family Guardian es una herramienta de apoyo, no un sustituto de la supervisión parental directa. Siempre mantén comunicación abierta con tus hijos.</p>
+      </div>
+    </div>
+
+    <div class="content-section" id="t9">
+      <div class="content-section-header">
+        <div class="content-section-icon">🔄</div>
+        <div>
+          <div class="content-section-num">Artículo 09</div>
+          <div class="content-section-title">Modificaciones al servicio</div>
+        </div>
+      </div>
+      <p class="content-text">Nos reservamos el derecho de modificar o discontinuar, temporal o permanentemente, el servicio con o sin previo aviso. También podemos actualizar estos Términos en cualquier momento.</p>
+      <ul class="content-list">
+        <li>Los cambios importantes serán notificados dentro de la app</li>
+        <li>El uso continuado después de cambios implica aceptación de los nuevos términos</li>
+        <li>Si no estás de acuerdo con los cambios, debes dejar de usar la aplicación</li>
+      </ul>
+    </div>
+
+    <div class="content-section" id="t10">
+      <div class="content-section-header">
+        <div class="content-section-icon">🔚</div>
+        <div>
+          <div class="content-section-num">Artículo 10</div>
+          <div class="content-section-title">Terminación</div>
+        </div>
+      </div>
+      <p class="content-text">Podemos suspender o terminar tu acceso a Family Guardian inmediatamente, sin previo aviso, si:</p>
+      <ul class="content-list">
+        <li>Violas estos Términos de Servicio</li>
+        <li>Usas la app para actividades ilegales o no autorizadas</li>
+        <li>Proporcionas información falsa al registrarte</li>
+        <li>Tu comportamiento pone en riesgo la seguridad de otros usuarios</li>
+      </ul>
+      <p class="content-text">También puedes terminar tu cuenta en cualquier momento contactándonos o desinstalando la aplicación.</p>
+    </div>
+
+    <div class="content-section" id="t11">
+      <div class="content-section-header">
+        <div class="content-section-icon">🌐</div>
+        <div>
+          <div class="content-section-num">Artículo 11</div>
+          <div class="content-section-title">Ley aplicable</div>
+        </div>
+      </div>
+      <p class="content-text">Estos Términos se regirán e interpretarán de acuerdo con las leyes aplicables. Cualquier disputa relacionada con estos Términos se resolverá mediante negociación amistosa. Si no se llega a un acuerdo, se someterá a arbitraje o a los tribunales competentes según corresponda.</p>
+    </div>
+
+    <div class="content-section" id="t12">
+      <div class="content-section-header">
+        <div class="content-section-icon">✉️</div>
+        <div>
+          <div class="content-section-num">Artículo 12</div>
+          <div class="content-section-title">Contacto</div>
+        </div>
+      </div>
+      <p class="content-text">Para preguntas sobre estos Términos de Servicio o sobre Family Guardian en general:</p>
+      <ul class="content-list">
+        <li><strong>Email:</strong> <a href="mailto:jafetsaulchumbebravo90@gmail.com" style="color:var(--azul);">jafetsaulchumbebravo90@gmail.com</a></li>
+        <li><strong>Tiempo de respuesta:</strong> Máximo 72 horas hábiles</li>
+        <li><strong>Idioma:</strong> Español</li>
+      </ul>
+    </div>
+
+  </main>
+</div>
+
+<footer>
+  <div class="footer-inner-small">
+    <a href="index.html" class="footer-logo-small">
+      <div class="footer-logo-small-icon">🛡️</div>
+      Family Guardian
+    </a>
+    <ul class="footer-links-small">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="privacy.html">Privacidad</a></li>
+      <li><a href="terms.html">Términos</a></li>
+      <li><a href="mailto:jafetsaulchumbebravo90@gmail.com">Contacto</a></li>
+    </ul>
+    <p class="footer-copy-small">© 2025 Family Guardian. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
 </body>
 </html>
